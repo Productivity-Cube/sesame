@@ -1,0 +1,36 @@
+{
+ "check-coverage": true,
+ "per-file": true,
+ "lines": 100,
+ "statements": 100,
+ "functions": 100,
+ "branches": 100,
+ "include": [
+   "src/**/*.ts",
+   "src/**/*.tsx"
+ ],
+ "exclude": [
+  "src/**/*.d.ts",
+  "src/**/*.spec.ts",
+  "src/errors/*.ts",
+  "src/models/*.ts",
+  "src/bootstrap/database.ts",
+  "src/config.ts",
+  "src/publicInterfaces.ts",
+  "src/index.ts"
+ ],
+ "extension": [
+   ".ts",
+   ".tsx"
+ ],
+ "require": [
+   "ts-node/register"
+ ],
+ "reporter": [
+   "text",
+   "html"
+ ],
+ "sourceMap": true,
+ "instrument": true,
+ "all": true
+}
