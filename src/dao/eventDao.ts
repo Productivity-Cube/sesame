@@ -43,7 +43,7 @@ export class EventDao {
     queryParams: API.Events.Get.QueryParams,
   ): Promise<EventModel[]> {
     const group: string[] = []
-    const attributes: Sequelize.FindAttributeOptions = ['uuid', 'name', 'createdAt']
+    const attributes: Sequelize.FindAttributeOptions = ['uuid', 'name', 'value', 'createdAt']
 
     const eventWhere: {
       createdAt?: Object;
