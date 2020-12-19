@@ -1,4 +1,5 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString, MinLength, Min, ValidationError, IsNumber } from 'class-validator'
+import { IsEnum, IsNotEmpty, IsOptional, IsString, MinLength, Min, ValidationError, IsNumber, MaxLength } from 'class-validator'
+import { DoorModel } from './models/door'
 import { EventModel } from './models/event'
 
 // tslint:disable:max-classes-per-file no-shadowed-variable no-unnecessary-qualifier
@@ -21,9 +22,12 @@ export namespace API {
     }
   }
   export namespace Clients {
-    export namespace  Post {
+    export namespace Post {
       export class Body {
         ingoing?: boolean
+        @IsString()
+        @IsNotEmpty()
+        doorId: string = ''
       }
       export type Response = Object
     }
@@ -52,6 +56,65 @@ export namespace API {
       }
     }
   }
+  export namespace Doors {
+    export namespace uuid {
+      export namespace Get {
+        export type Response = DoorModel
+        export class Params {
+          @IsString()
+          uuid: string = ''
+        }
+      }
+      export namespace Put {
+        export type Response = DoorModel
+        export class Params {
+          @IsString()
+          uuid: string = ''
+        }
+        export class Body {
+          @IsString()
+          @MinLength(3)
+          name: string = ''
+
+          @IsString()
+          @MinLength(4)
+          @MaxLength(4)
+          openAt: string = ''
+
+          @IsString()
+          @MinLength(4)
+          @MaxLength(4)
+          closeAt: string = ''
+        }
+      }
+    }
+    export namespace Get {
+      export type Response = DoorModel[]
+    }
+    export namespace Post {
+      export class Body {
+        @IsNotEmpty()
+        @IsString()
+        @MinLength(3)
+        name: string = ''
+
+        @IsNotEmpty()
+        @IsString()
+        @MinLength(4)
+        @MaxLength(4)
+        openAt: string = ''
+
+        @IsNotEmpty()
+        @IsString()
+        @MinLength(4)
+        @MaxLength(4)
+        closeAt: string = ''
+      }
+
+      export type Response = DoorModel
+    }
+  }
+
   export namespace Events {
     export namespace Get {
       export enum GroupByOptions {

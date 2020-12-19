@@ -6,6 +6,12 @@ export class UserNotFoundError extends HttpError {
     Object.setPrototypeOf(this, UserNotFoundError.prototype)
   }
 }
+export class DoorNotFoundError extends HttpError {
+  constructor () {
+    super(404, 'Door not found');
+    Object.setPrototypeOf(this, UserNotFoundError.prototype)
+  }
+}
 export class ActivityNotFoundError extends HttpError {
   constructor () {
     super(404, 'Activity not found');

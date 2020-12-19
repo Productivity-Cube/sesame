@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript'
 import { ApiKey } from '../models/apiKey'
 import { Event } from '../models/event'
 import { User } from '../models/user'
+import { Door } from '../models/door'
 
 export class Database {
   private readonly sequelize: Sequelize
@@ -18,6 +19,7 @@ export class Database {
       ApiKey,
       Event,
       User,
+      Door
     ])
   }
 }

@@ -10,11 +10,12 @@ import { API } from '../publicInterfaces'
 // tslint:disable:newline-per-chained-call
 @Service()
 export class EventDao {
-  public async create (name: string, value?: string): Promise<Event> {
+  public async create (name: string, value?: string, doorId?: string): Promise<Event> {
     return Event.create({
       uuid: uuid.v4(),
       name,
-      value
+      value,
+      doorId
     })
   }
 
@@ -30,6 +31,7 @@ export class EventDao {
 
   public async getCurrentClients (): Promise<number> {
     const events: Event[] = await Event.findAll({
+      include: [{ all: true }],
       where: {
         name: EVENT_REGISTER_CLIENT
       },
@@ -63,6 +65,7 @@ export class EventDao {
     }
 
     return (await Event.findAll({
+      include: [{ all: true }],
       attributes: attributes,
       where: <Sequelize.WhereOptions> eventWhere,
       order: [['createdAt', 'desc']],

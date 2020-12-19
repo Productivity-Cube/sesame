@@ -21,7 +21,11 @@ export class EventController {
   @Authorized()
   async registerClient (@Body() body: API.Clients.Post.Body): Promise<API.Clients.Post.Response> {
     // tslint:disable-next-line:no-non-null-assertion
-    return (await this.eventDao.create(EVENT_REGISTER_CLIENT, (body.ingoing ? 1 : -1).toString())).toJSON()
+    return (await this.eventDao.create(
+      EVENT_REGISTER_CLIENT,
+      (body.ingoing ? 1 : -1).toString(),
+      body.doorId
+      )).toJSON()
   }
 
   @Get('/clients/number')

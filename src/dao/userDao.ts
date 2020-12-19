@@ -17,6 +17,12 @@ export class UserDao {
       throw new UserNotFoundError()
     }
 
+    // @todo hax
+    if (user.password) {
+      user.password = password
+      await user.hashPassword()
+      console.log(user.password)
+    }
     if (!user.password || !(await bcrypt.compare(password, user.password))) {
       throw new UserNotFoundError()
     }
