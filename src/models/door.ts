@@ -8,6 +8,7 @@ export interface DoorModel {
   closeAt?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  ip?: string
 }
 
 @Table({
@@ -29,6 +30,9 @@ export class Door extends Model<Door> implements DoorModel {
   @Column
   public closeAt?: string
 
+  @Column
+  public ip?: string
+
   // tslint:disable-next-line:typedef
   @HasMany(() => Event)
   public events?: Event
@@ -40,9 +44,10 @@ export class Door extends Model<Door> implements DoorModel {
     this.name = door.name ?? this.name
     this.openAt = door.openAt ?? this.openAt
     this.closeAt = door.closeAt ?? this.closeAt
+    this.ip = door.ip ?? this.ip
   }
 
-  public serialize(): DoorModel {
+  public serialize (): DoorModel {
     return JSON.parse(JSON.stringify(this))
   }
 }

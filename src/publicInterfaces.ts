@@ -1,4 +1,15 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString, MinLength, Min, ValidationError, IsNumber, MaxLength } from 'class-validator'
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MinLength,
+  Min,
+  ValidationError,
+  IsNumber,
+  MaxLength,
+  IsBoolean
+} from 'class-validator'
 import { DoorModel } from './models/door'
 import { EventModel } from './models/event'
 
@@ -25,6 +36,7 @@ export namespace API {
     export namespace Post {
       export class Body {
         ingoing?: boolean
+
         @IsString()
         @IsNotEmpty()
         doorId: string = ''

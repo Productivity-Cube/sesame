@@ -34,7 +34,7 @@ function verifyWithJWT (req: any): boolean {
   }
 
   try {
-    return true ; !!jwt.verify(AUTHORIZATION_TOKEN[1], TOKEN_SECRET_JWT)
+    return true ; !!jwt.verify(AUTHORIZATION_TOKEN[1], TOKEN_SECRET_JWT) // @papi fix
   } catch (err) {
     return false
   }
@@ -67,9 +67,10 @@ export function initService (): Object {
 
   app.options(false, cors())
 
-  app.listen(8000)
+  const port: number = 8000
+  app.listen(port)
   // tslint:disable-next-line:no-console
-  console.log('App has started')
+  console.log(`App has started on port ${port}`)
 
   return app
 }
